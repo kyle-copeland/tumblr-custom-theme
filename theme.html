@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>{Title}</title>
+        <!--Blog Inspired by Rasmus Andersson
+            This guy is really talented! Check out his blog
+            rsms.me-->
+        <style type="text/css">
+            @font-face { font-family: "lainie"; src: url('http://static.tumblr.com/oetadgc/Uialyjfaa/laine.ttf'); }
+            *{font-family:inherit;}
+            body {
+                margin: 0 auto;
+                width: 1024px;
+                font:14px helvetica, sans-serif;
+                color: #666;
+            }
+            a { text-decoration: none; color: inherit;}
+            h1 {
+                font-family:lainie,serif;
+            }
+            posts {display:block;}
+            post {display:block;}
+                post img { max-width:100%;}
+                post a {color:#aaa;}
+                post a:hover {color: #111;}
+            post div.caption p,a{display:inline-block;}
+           post div.html_photoset iframe html{text-align:-webkit-center;}
+            footer {display:block; margin: 2em 0;}
+                footer a {color:#888;}
+                footer a:hover {color:#111;}
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1><a href="http://kyle-copeland.github.io">{Title}</a></h1>
+             {block:Description}
+             <p id="description">{Description}</p>
+             {/block:Description}
+        </header>
+        <posts>
+            {block:Posts}{block:Text}
+                <post class="text">
+                    {block:Title}
+                        <h3><a href="{Permalink}">{Title}</a></h3>
+                    {/block:Title}{body}
+                    
+                </post>
+                {/block:Text}{block:Photo}
+                <post class="photo">
+                    {block:HighRes}
+                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+                    {/block:HighRes}
+                    <div class="caption">
+                    {block:Exif}
+                    <p>{block:Camera}{Camera}{/block:Camera} 
+                       {block:Aperture}{Aperture}{/block:Aperture} 
+                       {block:Exposure}{Exposure}{/block:Exposure} 
+                       {block:FocalLength}{FocalLength}{/block:FocalLength}
+                    </p>{/block:Exif}
+                     {block:Caption}{Caption}{/block:Caption}
+                    <a href="{Permalink}">{block:Date}{Month} {DayOfMonth}, {Year}{/block:Date}</a>
+                    </div>
+                </post>
+                {/block:Photo}
+            {/block:Posts}
+        </posts>
+        
+        <footer>
+            <center>
+            {block:NextPage}
+                <a href="{NextPage}">Older photos</a>
+                <span>-</span>
+            {/block:NextPage}
+
+            <a href="/archive">Archive</a>
+            {block:PreviousPage}
+                <span>-</span>
+                <a href="{PreviousPage}">Newer photos</a>
+            {/block:PreviousPage}
+            </center>
+        </footer>
+    </body>
+</html>
